@@ -10,17 +10,21 @@ struct User {
 static mut COUNTER: isize = 0;
 
 fn main() {
-    let users = number_of_users();   // get vector of users
+ // get vector of users
 
-    println!("Total users entered: {}", users.len());
-
+ 
     // print all user data
-    for u in &users {
+    loop{
+        let users = number_of_users();
+    println!("Total users entered: {}", users.len());
+        for u in &users {
         println!(
             "User: {}, Age: {}, Mobile: {}, Signins: {}",
             u.name, u.age, u.mobile_number, u.sign_in_count
         );
     }
+    }
+      
 }
 
 fn struct_example() -> User {
@@ -88,6 +92,9 @@ fn number_of_users() -> Vec<User> {
         .read_line(&mut input)
         .expect("Failed to read line");
 
+        if input.trim()=="0"{
+            println!("Please enter the correct age");
+        }
     let count = match input.trim().parse::<isize>() {
         Ok(num) => num,
         Err(_) => {
